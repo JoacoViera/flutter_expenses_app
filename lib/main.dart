@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import './transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -32,22 +33,47 @@ class MyHomePage extends StatelessWidget {
       date: DateTime.now(),
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: const Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
             width: double.infinity,
-            child: Card(
+            child: const Card(
               color: Colors.blue,
-              child: Text('CHART!'),
               elevation: 5,
+              child: Text('CHART!'),
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  const TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                  ),
+                  const TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                  ),
+                  TextButton(
+                    onPressed: () => {},
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.purple,
+                    ),
+                    child: const Text('Add Transaction'),
+                  ),
+                ],
+              ),
             ),
           ),
           Column(
@@ -87,7 +113,7 @@ class MyHomePage extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  tx.date.toString(),
+                                  DateFormat.yMMMMd().format(tx.date),
                                   style: const TextStyle(
                                     color: Colors.grey,
                                   ),
