@@ -1,5 +1,7 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
-import 'package:flutter_expenses_app/widgets/transaction_list.dart';
+import 'widgets/user_transactions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +23,8 @@ class MyHomePage extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
+  MyHomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,36 +43,7 @@ class MyHomePage extends StatelessWidget {
               child: Text('CHART!'),
             ),
           ),
-          Card(
-            elevation: 5,
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  TextField(
-                    decoration: const InputDecoration(labelText: 'Title'),
-                    controller: titleController,
-                  ),
-                  TextField(
-                    decoration: const InputDecoration(labelText: 'Amount'),
-                    controller: amountController,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      print(titleController.text);
-                      print(amountController.text);
-                    },
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.purple,
-                    ),
-                    child: const Text('Add Transaction'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const TransactionList(),
+          const UserTransactions(),
         ],
       ),
     );
