@@ -12,13 +12,15 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
       child: transactions.isEmpty
           ? Column(
               children: [
-                const Text('No transactions added yet'),
+                const Text(
+                  'No transactions added yet',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
                 const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 SizedBox(
                   height: 200,
