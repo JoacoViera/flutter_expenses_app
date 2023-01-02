@@ -54,66 +54,72 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            TextField(
-              decoration: const InputDecoration(labelText: 'Title'),
-              controller: _titleController,
-              onSubmitted: (_) => submitData(),
-              // onChanged: (val) {
-              //   titleInput = val;
-              // },
-            ),
-            TextField(
-              decoration: const InputDecoration(labelText: 'Amount'),
-              controller: _amountController,
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData(),
-              // onChanged: (val) => amountInput = val,
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      _selectedDate == null
-                          ? 'No Date Chosen'
-                          : 'Picked Date: ${DateFormat.yMd().format(_selectedDate as DateTime)}',
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: _presentDatePicker,
-                    style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).primaryColor,
-                    ),
-                    child: const Text(
-                      'Choose Date',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              TextField(
+                decoration: const InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+                onSubmitted: (_) => submitData(),
+                // onChanged: (val) {
+                //   titleInput = val;
+                // },
               ),
-            ),
-            TextButton(
-              onPressed: () {
-                if (_titleController.text.isEmpty ||
-                    _amountController.text.isEmpty) {
-                  return;
-                }
-                submitData();
-              },
-              style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.purple),
-              child: const Text('Add Transaction'),
-            ),
-          ],
+              TextField(
+                decoration: const InputDecoration(labelText: 'Amount'),
+                controller: _amountController,
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => submitData(),
+                // onChanged: (val) => amountInput = val,
+              ),
+              Container(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        _selectedDate == null
+                            ? 'No Date Chosen'
+                            : 'Picked Date: ${DateFormat.yMd().format(_selectedDate as DateTime)}',
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: _presentDatePicker,
+                      style: TextButton.styleFrom(
+                        foregroundColor: Theme.of(context).primaryColor,
+                      ),
+                      child: const Text(
+                        'Choose Date',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  if (_titleController.text.isEmpty ||
+                      _amountController.text.isEmpty) {
+                    return;
+                  }
+                  submitData();
+                },
+                style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.purple),
+                child: const Text('Add Transaction'),
+              ),
+            ],
+          ),
         ),
       ),
     );
